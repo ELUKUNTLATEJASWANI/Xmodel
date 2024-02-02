@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import Modal from "./model";
+import Modal from "./Modal";
 
 const App = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -49,7 +49,7 @@ const App = () => {
   useEffect(() => {
     document.addEventListener("click", handleOutsideClick);
 
-    // Cleanup the event listener when the component unmounts
+   
     return () => {
       document.removeEventListener("click", handleOutsideClick);
     };
