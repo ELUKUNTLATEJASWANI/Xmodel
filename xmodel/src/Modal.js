@@ -18,6 +18,7 @@ function Modal({ show, handleClose, handleSubmit, formData, setFormData }) {
         <form
           onSubmit={(e) => {
             handleSubmit(e, localFormData, setLocalFormData);
+            // Reset the form data to initial state
             setLocalFormData(initialFormData);
           }}
         >
@@ -58,6 +59,7 @@ function Modal({ show, handleClose, handleSubmit, formData, setFormData }) {
             Submit
           </button>
         </form>
+        {/* <button onClick={handleClose}>Close</button> */}
       </div>
     </div>
   );

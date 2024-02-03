@@ -49,7 +49,7 @@ const App = () => {
   useEffect(() => {
     document.addEventListener("click", handleOutsideClick);
 
-   
+    // Cleanup the event listener when the component unmounts
     return () => {
       document.removeEventListener("click", handleOutsideClick);
     };
