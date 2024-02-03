@@ -11,7 +11,13 @@
   font-weight:900;
 
 }
+.modal-display-block{
 
+  display: block;
+}
+.modal-display-none{
+  display: none;
+}
 .modal-content {
   position: absolute;
   top: 50%;
