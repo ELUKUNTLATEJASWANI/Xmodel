@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Modal.css";
 
 function Modal({ show, handleClose, handleSubmit, formData, setFormData }) {
@@ -11,12 +11,27 @@ function Modal({ show, handleClose, handleSubmit, formData, setFormData }) {
 
   const [localFormData, setLocalFormData] = useState(initialFormData);
 
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (show && event.target.classList.contains("modal")) {
+        handleClose();
+      }
+    };
+
+    document.addEventListener("click", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
+  }, [show, handleClose]);
+
   return (
-    <div className={show ? "modal display-block" : "modal display-none"} onClick={handleClose}>
+    <div className={show ? "modal display-block" : "modal display-none"}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <h2>Fill Details</h2>
         <form
           onSubmit={(e) => {
+            e.preventDefault();
             handleSubmit(e, localFormData, setLocalFormData);
             // Reset the form data to initial state
             setLocalFormData(initialFormData);
@@ -59,7 +74,6 @@ function Modal({ show, handleClose, handleSubmit, formData, setFormData }) {
             Submit
           </button>
         </form>
-        {/* <button onClick={handleClose}>Close</button> */}
       </div>
     </div>
   );
