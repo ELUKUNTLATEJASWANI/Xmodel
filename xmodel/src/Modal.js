@@ -10,20 +10,20 @@ function Modal({ show, handleClose, handleSubmit, formData, setFormData }) {
   };
 
   const [localFormData, setLocalFormData] = useState(initialFormData);
-
   useEffect(() => {
     const handleOutsideClick = (event) => {
       if (show && event.target.classList.contains("modal")) {
         handleClose();
       }
     };
-
+  
     document.addEventListener("click", handleOutsideClick);
-
+  
     return () => {
       document.removeEventListener("click", handleOutsideClick);
     };
   }, [show, handleClose]);
+  
 
   return (
     <div className={show ? "modal display-block" : "modal display-none"}>
